@@ -1,0 +1,7 @@
+exam_dbt/logs/
+exam_dbt/target/
+exam_dbt/.pytest_cache/
+venv/
+__pycache__/
+*.pyc
+.DS_Store  
