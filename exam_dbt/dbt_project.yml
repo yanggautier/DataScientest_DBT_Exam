@@ -31,6 +31,30 @@ clean-targets:         # directories to be removed by `dbt clean`
 # files using the `{{ config(...) }}` macro.
 models:
   exam_dbt:
-    # Config indicated by + and applies to all files under models/example/
-    example:
+    +materialized: table
+    staging:
+      +schema: public
+    marts:
+      +schema: star         
+    intermediate:
+      +schema: star
+    reports:
+      +schema: reporting
       +materialized: view
+
+
+on-run-start:
+  - "CREATE FILE FORMAT IF NOT EXISTS {{ target.schema }}.CLASSIC_CSV
+     TYPE = 'CSV'
+     COMPRESSION = 'AUTO'
+     RECORD_DELIMITER = '\\n'
+     FIELD_DELIMITER = ','
+     SKIP_HEADER = 1
+     DATE_FORMAT = 'AUTO'
+     TIMESTAMP_FORMAT = 'AUTO'
+     FIELD_OPTIONALLY_ENCLOSED_BY = 'NONE'
+     TRIM_SPACE = FALSE
+     ERROR_ON_COLUMN_COUNT_MISMATCH = FALSE
+     ESCAPE = 'NONE'
+     ESCAPE_UNENCLOSED_FIELD = '\\134'
+     NULL_IF = ('\\\\N')"

@@ -1,0 +1,35 @@
+# models/staging/schema.yml
+version: 2
+
+sources:
+  - name: raw_music
+    description: "Données brutes importées depuis S3 via Snowflake Stage"
+    
+    tables:
+      - name: tracks
+        description: "Morceaux de musique"
+        identifier: "@s3_data/music/Track.csv"
+        
+      - name: artists
+        description: "Artistes de musique"
+        identifier: "@s3_data/music/Artist.csv"
+      
+      - name: albums
+        description: "Albums de musique"
+        identifier: "@s3_data/music/Album.csv"
+      
+      - name: mediatypes
+        description: "Types de médias de musique"
+        identifier: "@s3_data/music/MediaType.csv"
+      
+      - name: genres
+        description: "Genres de musique"
+        identifier: "@s3_data/music/Genre.csv"
+      
+      - name: playlists
+        description: "Playlists de musique"
+        identifier: "@s3_data/music/Playlist.csv"
+      
+      - name: playlist_tracks
+        description: "Relation entre les playlists et les morceaux"
+        identifier: "@s3_data/music/PlaylistTrack.csv"
