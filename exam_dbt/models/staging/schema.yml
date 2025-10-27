@@ -33,3 +33,94 @@ sources:
       - name: playlist_tracks
         description: "Relation entre les playlists et les morceaux"
         identifier: "@s3_data/music/PlaylistTrack.csv"
+
+models:
+  - name: stg_track
+    description: "Modèle de staging pour les morceaux de musique"
+    columns:
+      - name: track_id
+        description: "Identifiant unique du morceau"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Nom du morceau"
+      - name: album_id
+        description: "Identifiant de l'album associé"
+      - name: media_type_id
+        description: "Identifiant du type de média"
+      - name: genre_id
+        description: "Identifiant du genre"
+      - name: composer
+        description: "Compositeur du morceau"
+      - name: milliseconds
+        description: "Durée du morceau en millisecondes"
+      - name: bytes
+        description: "Taille du fichier en octets"
+      - name: unit_price
+        description: "Prix unitaire du morceau"
+
+  - name: stg_artist
+    description: "Modèle de staging pour les artistes de musique"
+    columns:
+      - name: artist_id
+        description: "Identifiant unique de l'artiste"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Nom de l'artiste"
+
+  - name: stg_album
+    description: "Modèle de staging pour les albums de musique"
+    columns:
+      - name: album_id
+        description: "Identifiant unique de l'album"
+        tests:
+          - unique
+          - not_null
+      - name: title
+        description: "Titre de l'album"
+      - name: artist_id
+        description: "Identifiant de l'artiste associé"
+
+  - name: stg_media_type
+    description: "Modèle de staging pour les types de médias de musique"
+    columns:
+      - name: media_type_id
+        description: "Identifiant unique du type de média"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Nom du type de média" 
+
+  - name: stg_genre
+    description: "Modèle de staging pour les genres de musique"
+    columns:
+      - name: genre_id
+        description: "Identifiant unique du genre"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Nom du genre"
+
+  - name: stg_playlist
+    description: "Modèle de staging pour les playlists de musique"
+    columns:
+      - name: playlist_id
+        description: "Identifiant unique de la playlist"
+        tests:
+          - unique
+          - not_null
+      - name: name
+        description: "Nom de la playlist" 
+    
+  - name: stg_playlist_track
+    description: "Modèle de staging pour la relation entre les playlists et les morceaux"
+    columns:
+      - name: playlist_id
+        description: "Identifiant de la playlist"
+      - name: track_id
+        description: "Identifiant du morceau"
